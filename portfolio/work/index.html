@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" property="og:description" content="Browse my product management portfolio featuring digital learning platforms, user research, and international product delivery">
+<meta name="viewport" content="width=device-width">
+<title>My Work | Katie Prokop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Public Sans', sans-serif; 
+  line-height: 1.6; 
+  color: #333;
+  background: #f8f9fa;
+}
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 2rem;
+}
+header { 
+  text-align: center; 
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+}
+h1 { 
+  font-family: 'Rubik', sans-serif;
+  font-size: 3rem; 
+  margin-bottom: 0.5rem;
+}
+.tagline { 
+  font-size: 1.1rem; 
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+}
+nav {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+nav a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+nav a:hover, nav a.active {
+  color: #764ba2;
+}
+.projects-grid {
+  display: grid;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.project-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+}
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.project-title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.8rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+.project-type {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.project-description {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.meta-label {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.meta-value {
+  color: #666;
+}
+.project-impact {
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+.project-impact h4 {
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.project-impact p {
+  color: #555;
+  font-size: 0.95rem;
+}
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.skill-tag {
+  background: #e8eaf6;
+  color: #667eea;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.pm-highlight {
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+.pm-highlight h4 {
+  color: #e65100;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.pm-highlight ul {
+  list-style: none;
+  padding: 0;
+}
+.pm-highlight li {
+  color: #555;
+  padding: 0.25rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.pm-highlight li:before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #ff9800;
+}
+.cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 3rem;
+  border-radius: 15px;
+  margin: 3rem 0;
+}
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.btn {
+  display: inline-block;
+  background: white;
+  color: #667eea;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: transform 0.3s;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  .project-card { padding: 1.5rem; }
+  .project-title { font-size: 1.5rem; }
+  .project-meta { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#work" class="active">Work</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="mailto:prokopkatie@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Product Work</h1>
+    <p class="tagline">A showcase of product management, user research, and digital platform development across education technology and international markets</p>
+  </header>
+
+  <div class="projects-grid">
+    <!-- AWS SheBuilds Project -->
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">AWS SheBuilds Hapori Wahine</h2>
+        </div>
+        <span class="project-type">Product Design & Research</span>
+      </div>
+      
+      <p class="project-description">
+        Led end-to-end product design for a large-scale digital literacy programme targeting women in tech. Designed participant journeys, created interactive learning modules, and conducted iterative user testing to optimize engagement and completion rates.
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2023-2024</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Content Developer / Product Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Code Avengers</span>
+        </div>
+      </div>
+
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Increased user engagement through data-driven iterations based on real user testing. Successfully delivered accessible learning content for diverse audiences with varying technical backgrounds.</p>
+      </div>
+
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>User journey mapping and participant flow design</li>
+          <li>Conducted user testing with target audiences</li>
+          <li>Analyzed engagement data to inform product iterations</li>
+          <li>Created interactive prototypes using Rise 360 and H5P</li>
+          <li>Collaborated with stakeholders to align on product goals</li>
+        </ul>
+      </div>
+
+      <div class="skills-tags">
+        <span class="skill-tag">User Research</span>
+        <span class="skill-tag">Journey Mapping</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Prototyping</span>
+        <span class="skill-tag">Analytics</span>
+      </div>
+    </div>
+
+    <!-- Samoa Pacificode Project -->
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">Samoa Pacificode</h2>
+        </div>
+        <span class="project-type">International Product Delivery</span>
+      </div>
+      
+      <p class="project-description">
+        Managed end-to-end product delivery for international digital skills program across Pacific regions. Secured funding from PCF and MESC Samoa, coordinated cross-jurisdictional stakeholders, and designed training workflows adapted to local contexts.
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2023</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Content Developer / Project Lead</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Code Avengers</span>
+        </div>
+      </div>
+
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Successfully secured international funding and delivered culturally-appropriate digital literacy training across multiple Pacific regions. Demonstrated ability to navigate complex stakeholder relationships across different countries and regulatory environments.</p>
+      </div>
+
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>Stakeholder management across international organizations</li>
+          <li>Product requirements gathering in cross-cultural contexts</li>
+          <li>Funding proposals and budget management</li>
+          <li>Go-to-market strategy for new regions</li>
+          <li>Adapted product features for local user needs</li>
+        </ul>
+      </div>
+
+      <div class="skills-tags">
+        <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">International Delivery</span>
+        <span class="skill-tag">Funding & Budgets</span>
+        <span class="skill-tag">Cross-Cultural Product Design</span>
+        <span class="skill-tag">Requirements Gathering</span>
+      </div>
+    </div>
+
+    <!-- BOLD PLD Project -->
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">BOLD Professional Development Platform</h2>
+        </div>
+        <span class="project-type">Product Strategy & Delivery</span>
+      </div>
+      
+      <p class="project-description">
+        Led product development for blended professional learning platform serving 100+ users. Gathered requirements from diverse stakeholders, analyzed skills gaps through data collection, designed modular learning architecture, and delivered MVP on schedule using agile methodologies.
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2020-2021</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Learning Designer / Product Lead</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">NMIT (Te Pūkenga)</span>
+        </div>
+      </div>
+
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Delivered phase one on schedule, creating scalable platform architecture. Used Power BI analytics to identify training needs and prioritize features based on user data. Successfully launched to 69 tutors and 31 support staff.</p>
+      </div>
+
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>Requirements gathering from 100+ users across multiple roles</li>
+          <li>Data analysis to identify skill gaps and prioritize features</li>
+          <li>Created product roadmap and delivered MVP in phases</li>
+          <li>Agile project management and sprint planning</li>
+          <li>Built analytics dashboards for measuring success metrics</li>
+        </ul>
+      </div>
+
+      <div class="skills-tags">
+        <span class="skill-tag">Requirements Gathering</span>
+        <span class="skill-tag">Data Analytics</span>
+        <span class="skill-tag">Agile Delivery</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Product Roadmap</span>
+        <span class="skill-tag">Scrum</span>
+      </div>
+    </div>
+
+    <!-- Clinical Portfolios Project -->
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">Clinical Portfolio Digital Transformation</h2>
+        </div>
+        <span class="project-type">Digital Transformation</span>
+      </div>
+      
+      <p class="project-description">
+        Drove digital transformation of Bachelor of Nursing portfolios from paper to digital platform. Collaborated with clinical educators, IT teams, and hospital stakeholders to ensure regulatory compliance while improving student and educator experience.
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2020</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Learning Designer / Change Lead</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">NMIT Nursing Department</span>
+        </div>
+      </div>
+
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Eliminated geographical barriers for portfolio sharing, enabling remote feedback and collaboration. Ensured compliance with Nursing Council and healthcare sector requirements while modernizing workflows.</p>
+      </div>
+
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>Change management for legacy process digitization</li>
+          <li>Multi-stakeholder coordination (educators, IT, hospitals)</li>
+          <li>Compliance mapping to regulatory requirements</li>
+          <li>User experience design for clinical education context</li>
+          <li>Conducted workshops to gather feedback and iterate</li>
+        </ul>
+      </div>
+
+      <div class="skills-tags">
+        <span class="skill-tag">Digital Transformation</span>
+        <span class="skill-tag">Change Management</span>
+        <span class="skill-tag">Compliance</span>
+        <span class="skill-tag">Multi-Stakeholder Collaboration</span>
+        <span class="skill-tag">Workshop Facilitation</span>
+      </div>
+    </div>
+
+    <!-- Unit Planning Project -->
+    <div class="project-card">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">K-12 Curriculum Resource Platform</h2>
+        </div>
+        <span class="project-type">Content Strategy & Product Development</span>
+      </div>
+      
+      <p class="project-description">
+        Developed standardized educational content for K-12 grades aligned with global curriculum standards. Created 40 hours of learning materials per grade level with emphasis on Universal Design for Learning, gamification, and inquiry-based projects.
+      </p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2022-2023</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Content Developer / Product Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Code Avengers</span>
+        </div>
+      </div>
+
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Created scalable, globally-aligned curriculum resources serving students across multiple countries. Designed with accessibility and inclusion principles, ensuring broad market reach and positive user outcomes.</p>
+      </div>
+
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>Content strategy and information architecture</li>
+          <li>Competitive analysis of curriculum alignment markets</li>
+          <li>User testing with K-12 educators and students</li>
+          <li>Agile content development in iterative sprints</li>
+          <li>Created feedback loops for continuous improvement</li>
+        </ul>
+      </div>
+
+      <div class="skills-tags">
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">UDL</span>
+        <span class="skill-tag">Curriculum Alignment</span>
+        <span class="skill-tag">Gamification</span>
+        <span class="skill-tag">User Testing</span>
+        <span class="skill-tag">Agile Development</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="cta-section">
+    <h2>Let's Discuss Your Product Needs</h2>
+    <p>I'm passionate about building products that solve real problems through user research, data-driven decisions, and collaborative development.</p>
+    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Katie Prokop | Product Manager</p>
+    <p style="margin-top: 0.5rem;">Nelson, New Zealand 🇳🇿</p>
+  </footer>
+</div>
+</body>
+</html>
