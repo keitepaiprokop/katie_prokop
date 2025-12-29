@@ -1,304 +1,156 @@
-<!DOCTYPE html>
-<html lang="en" data-astro-cid-37fxchfa>
-<head>
-<meta charset="UTF-8">
-<meta name="description" property="og:description" content="Product Manager specializing in digital learning and user-centered design">
-<meta name="viewport" content="width=device-width">
-<title>Katie Prokop - Product Manager Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet">
+---
+// src/pages/index.astro - COMPLETE Katie Prokop Content Creator Portfolio
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Pill from '../components/Pill.astro';
+import Icon from '../components/Icon.astro';
+import Skills from '../components/Skills.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import Grid from '../components/Grid.astro';
+import CallToAction from '../components/CallToAction.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const projects = (await getCollection('work'))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 4);
+---
+
+<BaseLayout title="Katie Prokop - Content Creator">
+  <div class="stack gap-20 lg:gap-48">
+    <!-- Hero Section -->
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <Hero
+          title="Katie Prokop"
+          tagline="Content Creator | Digital Learning Media"
+          panelContent={
+            <div class="roles">
+              <p class="location">📍 Nelson, New Zealand</p>
+            </div>
+          }
+          align="start"
+        >
+          <div class="hero-description">
+            <p>Creating engaging educational content that transforms learning. Specializing in video production, interactive tutorials, and digital media for tech and edtech audiences across New Zealand and Pacific regions.</p>
+            <div class="pills">
+              <Pill><Icon icon="video" />Video Production</Pill>
+              <Pill><Icon icon="podcast" />Podcasting</Pill>
+              <Pill><Icon icon="edit" />Content Editing</Pill>
+              <Pill><Icon icon="analytics" />YouTube Analytics</Pill>
+            </div>
+          </div>
+        </Hero>
+
+        <div class="hero-image">
+          <svg viewBox="0 0 400 300" class="portrait-svg">
+            <rect x="50" y="50" width="300" height="200" fill="#667eea" opacity="0.1" rx="10"/>
+            <rect x="70" y="70" width="120" height="80" fill="#667eea" opacity="0.3" rx="5"/>
+            <rect x="210" y="70" width="120" height="80" fill="#764ba2" opacity="0.3" rx="5"/>
+            <rect x="70" y="170" width="260" height="60" fill="#667eea" opacity="0.2" rx="5"/>
+            <circle cx="200" cy="40" r="15" fill="#764ba2"/>
+            <circle cx="170" cy="270" r="12" fill="#667eea"/>
+            <circle cx="230" cy="270" r="12" fill="#764ba2"/>
+          </svg>
+        </div>
+      </header>
+
+      <Skills />
+    </div>
+
+    <!-- Featured Projects -->
+    <main class="wrapper stack gap-20 lg:gap-48">
+      <section class="section with-background with-cta">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Featured Content</h3>
+          <p>Recent videos, podcasts, and digital projects for education and tech.</p>
+        </header>
+
+        <div class="gallery">
+          <Grid variant="offset">
+            {projects.map((project) => (
+              <li>
+                <PortfolioPreview 
+                  project={project} 
+                  href={`/work/${project.slug}`}
+                />
+              </li>
+            ))}
+          </Grid>
+        </div>
+
+        <div class="cta">
+          <CallToAction href="/work/">
+            View All Projects
+            <Icon icon="arrow-right" size="1.2em" />
+          </CallToAction>
+        </div>
+      </section>
+    </main>
+
+    <!-- CTA Section -->
+    <ContactCTA email="prokopkatie@gmail.com" />
+  </div>
+</BaseLayout>
+
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-  font-family: 'Public Sans', sans-serif; 
-  line-height: 1.6; 
-  color: #333;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-}
-.container { 
-  max-width: 1200px; 
-  margin: 0 auto; 
-  padding: 2rem;
-  background: white;
-  min-height: 100vh;
-}
-header { 
-  text-align: center; 
-  padding: 3rem 0;
-  border-bottom: 2px solid #667eea;
-}
-h1 { 
-  font-family: 'Rubik', sans-serif;
-  font-size: 3rem; 
-  color: #667eea;
-  margin-bottom: 0.5rem;
-}
-.tagline { 
-  font-size: 1.25rem; 
-  color: #666;
-  margin-bottom: 1rem;
-}
-.location {
-  color: #999;
-  font-size: 0.9rem;
-}
-.hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  padding: 3rem 0;
-  align-items: center;
-}
-.hero-text h2 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-.hero-text p {
-  color: #666;
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-}
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.pill {
-  background: #667eea;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-}
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 3rem 0;
-}
-.skill-card {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 12px;
-  border-left: 4px solid #667eea;
-}
-.skill-card h3 {
-  color: #667eea;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-.projects-section {
-  padding: 3rem 0;
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.section-header h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-.project-card {
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 2rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border-color: #667eea;
-}
-.project-card h4 {
-  color: #667eea;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.project-tag {
-  background: #e8eaf6;
-  color: #667eea;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.85rem;
-}
-.cta-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  padding: 3rem;
-  border-radius: 12px;
-  margin: 3rem 0;
-}
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-.btn {
-  display: inline-block;
-  background: white;
-  color: #667eea;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 1rem;
-  transition: transform 0.3s;
-}
-.btn:hover {
-  transform: scale(1.05);
-}
-footer {
-  text-align: center;
-  padding: 2rem;
-  border-top: 2px solid #e0e0e0;
-  color: #666;
-}
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-.social-links a {
-  color: #667eea;
-  text-decoration: none;
-}
-@media (max-width: 768px) {
-  .hero-section, .skills-grid, .projects-grid {
-    grid-template-columns: 1fr;
+  :root {
+    --purple-500: #667eea;
+    --purple-600: #764ba2;
+    --purple-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
-  h1 { font-size: 2rem; }
-}
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background: var(--purple-bg);
+    padding: 3rem 2rem;
+    border-radius: 1.5rem;
+    color: white;
+  }
+
+  .hero-description {
+    max-width: 50ch;
+  }
+
+  .pills {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .portrait-svg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding: 3rem 2.5rem;
+      gap: 3.75rem;
+    }
+  }
+
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .with-background::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: 2.25;
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background: var(--purple-bg);
+    z-index: -1;
+  }
 </style>
-</head>
-<body>
-<div class="container">
-  <header>
-    <h1>Katie Prokop</h1>
-    <p class="tagline">Product Manager | Digital Learning Specialist</p>
-    <p class="location">📍 Nelson, New Zealand</p>
-  </header>
-
-  <section class="hero-section">
-    <div class="hero-text">
-      <h2>Building products that solve real user problems</h2>
-      <p>Product manager with 6+ years experience translating user needs into successful digital products. Certified Scrum Master with expertise in agile development, user research, and cross-functional collaboration across education technology and digital learning platforms.</p>
-      <div class="pills">
-        <span class="pill">Product Management</span>
-        <span class="pill">User Research</span>
-        <span class="pill">Agile/Scrum</span>
-        <span class="pill">Data Analytics</span>
-      </div>
-    </div>
-    <div class="hero-image">
-      <svg viewBox="0 0 400 300" style="width: 100%; max-width: 400px;">
-        <rect x="50" y="50" width="300" height="200" fill="#667eea" opacity="0.1" rx="10"/>
-        <rect x="70" y="70" width="120" height="80" fill="#667eea" opacity="0.3" rx="5"/>
-        <rect x="210" y="70" width="120" height="80" fill="#764ba2" opacity="0.3" rx="5"/>
-        <rect x="70" y="170" width="260" height="60" fill="#667eea" opacity="0.2" rx="5"/>
-        <circle cx="200" cy="40" r="15" fill="#764ba2"/>
-        <circle cx="170" cy="270" r="12" fill="#667eea"/>
-        <circle cx="230" cy="270" r="12" fill="#764ba2"/>
-      </svg>
-    </div>
-  </section>
-
-  <section class="skills-grid">
-    <div class="skill-card">
-      <h3>🎯 Product Strategy</h3>
-      <p>Translate user insights into actionable product roadmaps. Experience conducting user interviews, competitive analysis, and market research to inform product decisions.</p>
-    </div>
-    <div class="skill-card">
-      <h3>🤝 Cross-Functional Leadership</h3>
-      <p>Partner with engineers, designers, and stakeholders to deliver products on time. Certified Scrum Master with proven ability to facilitate agile ceremonies and remove blockers.</p>
-    </div>
-    <div class="skill-card">
-      <h3>📊 Data-Driven Decisions</h3>
-      <p>Use analytics, A/B testing, and user feedback to iterate on products. Proficient with Power BI, LMS analytics, and creating dashboards for stakeholder reporting.</p>
-    </div>
-  </section>
-
-  <section class="projects-section">
-    <div class="section-header">
-      <h2>Featured Projects</h2>
-      <p>Recent product work demonstrating user-centered design and technical delivery</p>
-    </div>
-    
-    <div class="projects-grid">
-      <div class="project-card">
-        <h4>AWS SheBuilds Hapori Wahine</h4>
-        <p>Designed end-to-end participant journey for large-scale digital literacy programme. Conducted user testing with target audiences and iterated based on feedback to improve completion rates.</p>
-        <div class="project-tags">
-          <span class="project-tag">User Research</span>
-          <span class="project-tag">Journey Mapping</span>
-          <span class="project-tag">A/B Testing</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h4>Samoa Pacificode</h4>
-        <p>Led curriculum mapping and product design for international digital skills program. Secured funding, managed stakeholder relationships, and delivered training content across multiple regions.</p>
-        <div class="project-tags">
-          <span class="project-tag">Product Strategy</span>
-          <span class="project-tag">Stakeholder Management</span>
-          <span class="project-tag">International Delivery</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h4>Clinical Portfolio Platform</h4>
-        <p>Drove digital transformation of Bachelor of Nursing portfolios from paper to digital. Collaborated with clinical educators and IT teams to ensure compliance with regulatory requirements.</p>
-        <div class="project-tags">
-          <span class="project-tag">Digital Transformation</span>
-          <span class="project-tag">Compliance</span>
-          <span class="project-tag">Change Management</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h4>BOLD Professional Development</h4>
-        <p>Gathered requirements from 100+ users, designed modular learning platform, and delivered phase one on schedule. Used data analytics to identify skills gaps and prioritize features.</p>
-        <div class="project-tags">
-          <span class="project-tag">Requirements Gathering</span>
-          <span class="project-tag">Analytics</span>
-          <span class="project-tag">Agile Delivery</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <h2>Interested in working together?</h2>
-    <p>Let's build something amazing. I'm currently exploring product management opportunities.</p>
-    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Katie Prokop | Product Manager</p>
-    <div class="social-links">
-      <a href="mailto:prokopkatie@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/kateprokop" target="_blank">LinkedIn</a>
-      <a href="https://github.com/kateprokop" target="_blank">GitHub</a>
-    </div>
-  </footer>
-</div>
-</body>
-</html>
