@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="description" property="og:description" content="Content designer and UX problem solver creating meaningful digital experiences">
+<meta name="description" property="og:description" content="Katie Prokop | Digital Learning & UX Specialist | Nelson, NZ">
 <meta name="viewport" content="width=device-width">
-<title>Katie Prokop - UX & Content Designer</title>
+<title>Katie Prokop - Digital Learning Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet">
@@ -50,27 +50,46 @@ nav a.active {
   opacity: 1;
   font-weight: 700;
 }
-header { 
-  text-align: center; 
+.header-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   padding: 3rem 0;
+  align-items: start;
   border-bottom: 2px solid #667eea;
 }
-h1 { 
+.header-left {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  text-align: left;
+}
+.header-left h3 {
+  color: #667eea;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.header-left p {
+  color: #555;
+  line-height: 1.6;
+}
+.header-right h1 { 
   font-family: 'Rubik', sans-serif;
   font-size: 3rem; 
   color: #667eea;
   margin-bottom: 0.5rem;
 }
-.tagline { 
+.header-right .tagline { 
   font-size: 1.25rem; 
   color: #666;
   margin-bottom: 1rem;
 }
-.location {
+.header-right .location {
   color: #999;
   font-size: 0.9rem;
 }
-/* Rest of styles unchanged */
 .hero-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -216,7 +235,7 @@ footer {
   border-radius: 12px;
 }
 @media (max-width: 768px) {
-  .hero-section, .skills-grid, .projects-grid {
+  .header-section, .hero-section, .skills-grid, .projects-grid {
     grid-template-columns: 1fr;
   }
   h1 { font-size: 2rem; }
@@ -234,22 +253,29 @@ footer {
     </ul>
   </nav>
 
-  <header>
-    <h1>Katie Prokop</h1>
-    <p class="tagline">UX & Content Designer</p>
-    <p class="location">📍 Nelson, New Zealand</p>
-  </header>
+  <section class="header-section">
+    <div class="header-left">
+      <h3>PROFILE</h3>
+      <p>Digital learning specialist designing evidence-based online programmes across education and workforce development in Aotearoa New Zealand. Expert in translating complex content into accessible eLearning with end-to-end course development and agile delivery.</p>
+    </div>
+    <div class="header-right">
+      <h1>KATIE PROKOP</h1>
+      <p class="tagline">+(64) 022-079-9017 | Digital Learning Specialist</p>
+      <p class="location">📍 Nelson, New Zealand</p>
+    </div>
+  </section>
 
-  <!-- Rest of content unchanged -->
   <section class="hero-section">
     <div class="hero-text">
-      <h2>Designing digital experiences that feel natural and purposeful</h2>
-      <p>I love creating content and structures that help people find what they need without friction. My background in education and digital learning shapes how I approach design—always focused on clarity, empathy, and storytelling.</p>
+      <h2>EXPERTISE</h2>
+      <p>Problem solving through design systems, eLearning development, LMS platforms, stakeholder codesign, analytics, and agile management.</p>
       <div class="pills">
-        <span class="pill">UX Design</span>
-        <span class="pill">Content Strategy</span>
-        <span class="pill">User Research</span>
-        <span class="pill">Design Thinking</span>
+        <span class="pill">Design Systems</span>
+        <span class="pill">eLearning Development</span>
+        <span class="pill">LMS Platforms</span>
+        <span class="pill">Stakeholder Codesign</span>
+        <span class="pill">Analytics & Data</span>
+        <span class="pill">Agile Management</span>
       </div>
     </div>
     <div class="hero-image">
@@ -259,80 +285,80 @@ footer {
 
   <section class="skills-grid">
     <div class="skill-card">
-      <h3>🧭 Content Strategy</h3>
-      <p>Craft words and structure that guide users with ease. From UX writing to information architecture, I focus on creating experiences that make complex processes feel simple.</p>
+      <h3>🎓 Build interactive modules</h3>
+      <p>Articulate/Rise 360, H5P, Moodle. Course publishing, UX optimisation, reporting, continuous improvement.</p>
     </div>
     <div class="skill-card">
-      <h3>🤝 Collaborative Design</h3>
-      <p>Work closely with designers, developers, and subject-matter experts to co-create accessible and human-centered digital products.</p>
+      <h3>🤝 Work with SMEs</h3>
+      <p>Partner with educators and experts to co-create scenario-based resources grounded in adult learning principles.</p>
     </div>
     <div class="skill-card">
-      <h3>🔍 User Research</h3>
-      <p>Ask, listen, and observe. I use user interviews, usability testing, and data insights to uncover patterns and refine design decisions.</p>
+      <h3>📊 Quality & data</h3>
+      <p>Map competencies to outcomes, conduct evaluations, use LMS analytics for iterative improvement.</p>
     </div>
   </section>
 
   <section class="projects-section">
     <div class="section-header">
       <h2>Featured Work</h2>
-      <p>Projects focused on practical problem-solving through language, structure, and design</p>
+      <p>Recent digital learning projects with real impact</p>
     </div>
     
     <div class="projects-grid">
       <div class="project-card">
-        <h4>AWS SheBuilds Hapori Wahine</h4>
-        <p>Designed user journeys and digital materials for a national programme helping women build digital skills. Tested accessibility and messaging to ensure clarity and engagement throughout.</p>
+        <h4>Agile Developer | Careerforce</h4>
+        <p>Worked in agile teams prioritising user needs for Health & Wellbeing digital learning products. Partnered with industry providers.</p>
         <div class="project-tags">
-          <span class="project-tag">Journey Mapping</span>
-          <span class="project-tag">Content Testing</span>
-          <span class="project-tag">Inclusive Design</span>
+          <span class="project-tag">Agile Teams</span>
+          <span class="project-tag">Stakeholder Design</span>
+          <span class="project-tag">LMS Development</span>
         </div>
       </div>
 
       <div class="project-card">
-        <h4>Samoa Pacificode</h4>
-        <p>Developed curriculum flow and learning resources for Pacific learners entering coding and digital literacy. Adapted content to meet local communication needs and storytelling styles.</p>
+        <h4>Content Developer | Code Avengers</h4>
+        <p>AWS SheBuilds Hapori Wahine & Samoa Pacificode. User testing, engagement analysis, iterative redesign with Rise 360 & H5P.</p>
         <div class="project-tags">
-          <span class="project-tag">Content Design</span>
-          <span class="project-tag">Localization</span>
-          <span class="project-tag">Learning Experience Design</span>
+          <span class="project-tag">User Testing</span>
+          <span class="project-tag">H5P Interactives</span>
+          <span class="project-tag">Cross-Cultural</span>
         </div>
       </div>
 
       <div class="project-card">
-        <h4>Clinical Portfolio Platform</h4>
-        <p>Helped shift nursing portfolios from paper to digital by designing user prompts, structure, and training materials that reduced confusion and improved usability for students and educators.</p>
+        <h4>Learning Designer | NMIT</h4>
+        <p>Lead designer translating complex content into NZQA-compliant online modules and assessments. Stakeholder workshops.</p>
         <div class="project-tags">
-          <span class="project-tag">UX Writing</span>
-          <span class="project-tag">Content Architecture</span>
-          <span class="project-tag">Change Support</span>
+          <span class="project-tag">NZQA Compliance</span>
+          <span class="project-tag">Digital Modules</span>
+          <span class="project-tag">Workshops</span>
         </div>
       </div>
 
       <div class="project-card">
         <h4>BOLD Professional Development</h4>
-        <p>Interviewed educators and mapped user journeys to design a modular learning platform centered on clarity, autonomy, and measurable progress.</p>
+        <p>Data gathering from 69 tutors, designed phase one online modules on schedule with institutional reporting.</p>
         <div class="project-tags">
-          <span class="project-tag">User Research</span>
-          <span class="project-tag">Prototyping</span>
-          <span class="project-tag">Content Flow</span>
+          <span class="project-tag">Data Analysis</span>
+          <span class="project-tag">Project Delivery</span>
+          <span class="project-tag">Moodle</span>
         </div>
       </div>
     </div>
   </section>
 
   <section class="cta-section">
-    <h2>Let's make something easy to use</h2>
-    <p>I'm always excited to collaborate on digital learning or UX projects that blend communication, design, and empathy.</p>
-    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
+    <h2>Reach out if you'd like to chat</h2>
+    <p>Available for digital learning, UX design, and eLearning development projects</p>
+    <a href="mailto:prokopkatie@gmail.com" class="btn">Say hello</a>
   </section>
 
   <footer>
-    <p>&copy; 2025 Katie Prokop | UX & Content Design</p>
+    <p>&copy; 2025 Katie Prokop</p>
     <div class="social-links">
-      <a href="mailto:prokopkatie@gmail.com">Email</a>
+      <a href="mailto:prokopkatie@gmail.com">prokopkatie@gmail.com</a>
       <a href="https://www.linkedin.com/in/kateprokop" target="_blank">LinkedIn</a>
-      <a href="https://github.com/kateprokop" target="_blank">GitHub</a>
+      <a href="tel:+64220799017">+(64) 022-079-9017</a>
     </div>
   </footer>
 </div>
