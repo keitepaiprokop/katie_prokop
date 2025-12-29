@@ -1,156 +1,340 @@
----
-// src/pages/index.astro - COMPLETE Katie Prokop Content Creator Portfolio
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Pill from '../components/Pill.astro';
-import Icon from '../components/Icon.astro';
-import Skills from '../components/Skills.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import Grid from '../components/Grid.astro';
-import CallToAction from '../components/CallToAction.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-
-const projects = (await getCollection('work'))
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 4);
----
-
-<BaseLayout title="Katie Prokop - Content Creator">
-  <div class="stack gap-20 lg:gap-48">
-    <!-- Hero Section -->
-    <div class="wrapper stack gap-8 lg:gap-20">
-      <header class="hero">
-        <Hero
-          title="Katie Prokop"
-          tagline="Content Creator | Digital Learning Media"
-          panelContent={
-            <div class="roles">
-              <p class="location">📍 Nelson, New Zealand</p>
-            </div>
-          }
-          align="start"
-        >
-          <div class="hero-description">
-            <p>Creating engaging educational content that transforms learning. Specializing in video production, interactive tutorials, and digital media for tech and edtech audiences across New Zealand and Pacific regions.</p>
-            <div class="pills">
-              <Pill><Icon icon="video" />Video Production</Pill>
-              <Pill><Icon icon="podcast" />Podcasting</Pill>
-              <Pill><Icon icon="edit" />Content Editing</Pill>
-              <Pill><Icon icon="analytics" />YouTube Analytics</Pill>
-            </div>
-          </div>
-        </Hero>
-
-        <div class="hero-image">
-          <svg viewBox="0 0 400 300" class="portrait-svg">
-            <rect x="50" y="50" width="300" height="200" fill="#667eea" opacity="0.1" rx="10"/>
-            <rect x="70" y="70" width="120" height="80" fill="#667eea" opacity="0.3" rx="5"/>
-            <rect x="210" y="70" width="120" height="80" fill="#764ba2" opacity="0.3" rx="5"/>
-            <rect x="70" y="170" width="260" height="60" fill="#667eea" opacity="0.2" rx="5"/>
-            <circle cx="200" cy="40" r="15" fill="#764ba2"/>
-            <circle cx="170" cy="270" r="12" fill="#667eea"/>
-            <circle cx="230" cy="270" r="12" fill="#764ba2"/>
-          </svg>
-        </div>
-      </header>
-
-      <Skills />
-    </div>
-
-    <!-- Featured Projects -->
-    <main class="wrapper stack gap-20 lg:gap-48">
-      <section class="section with-background with-cta">
-        <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Featured Content</h3>
-          <p>Recent videos, podcasts, and digital projects for education and tech.</p>
-        </header>
-
-        <div class="gallery">
-          <Grid variant="offset">
-            {projects.map((project) => (
-              <li>
-                <PortfolioPreview 
-                  project={project} 
-                  href={`/work/${project.slug}`}
-                />
-              </li>
-            ))}
-          </Grid>
-        </div>
-
-        <div class="cta">
-          <CallToAction href="/work/">
-            View All Projects
-            <Icon icon="arrow-right" size="1.2em" />
-          </CallToAction>
-        </div>
-      </section>
-    </main>
-
-    <!-- CTA Section -->
-    <ContactCTA email="prokopkatie@gmail.com" />
-  </div>
-</BaseLayout>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" property="og:description" content="Content designer and UX problem solver creating meaningful digital experiences">
+<meta name="viewport" content="width=device-width">
+<title>Katie Prokop - UX & Content Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --purple-500: #667eea;
-    --purple-600: #764ba2;
-    --purple-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Public Sans', sans-serif; 
+  line-height: 1.6; 
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 2rem;
+  background: white;
+  min-height: 100vh;
+}
+nav {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+nav a:hover {
+  opacity: 0.8;
+}
+nav a.active {
+  opacity: 1;
+  font-weight: 700;
+}
+header { 
+  text-align: center; 
+  padding: 3rem 0;
+  border-bottom: 2px solid #667eea;
+}
+h1 { 
+  font-family: 'Rubik', sans-serif;
+  font-size: 3rem; 
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+.tagline { 
+  font-size: 1.25rem; 
+  color: #666;
+  margin-bottom: 1rem;
+}
+.location {
+  color: #999;
+  font-size: 0.9rem;
+}
+/* Rest of styles unchanged */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  align-items: center;
+}
+.hero-text h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.hero-text p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.pill {
+  background: #667eea;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 3rem 0;
+}
+.skill-card {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+.skill-card h3 {
+  color: #667eea;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+.projects-section {
+  padding: 3rem 0;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.project-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-color: #667eea;
+}
+.project-card h4 {
+  color: #667eea;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.project-tag {
+  background: #e8eaf6;
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+}
+.cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 3rem;
+  border-radius: 12px;
+  margin: 3rem 0;
+}
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.btn {
+  display: inline-block;
+  background: white;
+  color: #667eea;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: transform 0.3s;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 2px solid #e0e0e0;
+  color: #666;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.social-links a {
+  color: #667eea;
+  text-decoration: none;
+}
+.hero-image {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+  .hero-section, .skills-grid, .projects-grid {
+    grid-template-columns: 1fr;
   }
-
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    background: var(--purple-bg);
-    padding: 3rem 2rem;
-    border-radius: 1.5rem;
-    color: white;
-  }
-
-  .hero-description {
-    max-width: 50ch;
-  }
-
-  .pills {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .portrait-svg {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-  }
-
-  @media (min-width: 50em) {
-    .hero {
-      display: grid;
-      grid-template-columns: 6fr 4fr;
-      padding: 3rem 2.5rem;
-      gap: 3.75rem;
-    }
-  }
-
-  .section {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .with-background::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    width: 100vw;
-    aspect-ratio: 2.25;
-    top: 0;
-    transform: translateY(-75%) translateX(-50%);
-    background: var(--purple-bg);
-    z-index: -1;
-  }
+  h1 { font-size: 2rem; }
+  nav ul { flex-direction: column; gap: 1rem; }
+}
 </style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:prokopkatie@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Katie Prokop</h1>
+    <p class="tagline">UX & Content Designer</p>
+    <p class="location">📍 Nelson, New Zealand</p>
+  </header>
+
+  <!-- Rest of content unchanged -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h2>Designing digital experiences that feel natural and purposeful</h2>
+      <p>I love creating content and structures that help people find what they need without friction. My background in education and digital learning shapes how I approach design—always focused on clarity, empathy, and storytelling.</p>
+      <div class="pills">
+        <span class="pill">UX Design</span>
+        <span class="pill">Content Strategy</span>
+        <span class="pill">User Research</span>
+        <span class="pill">Design Thinking</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/portrait.jpg" alt="Katie Prokop" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+    </div>
+  </section>
+
+  <section class="skills-grid">
+    <div class="skill-card">
+      <h3>🧭 Content Strategy</h3>
+      <p>Craft words and structure that guide users with ease. From UX writing to information architecture, I focus on creating experiences that make complex processes feel simple.</p>
+    </div>
+    <div class="skill-card">
+      <h3>🤝 Collaborative Design</h3>
+      <p>Work closely with designers, developers, and subject-matter experts to co-create accessible and human-centered digital products.</p>
+    </div>
+    <div class="skill-card">
+      <h3>🔍 User Research</h3>
+      <p>Ask, listen, and observe. I use user interviews, usability testing, and data insights to uncover patterns and refine design decisions.</p>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="section-header">
+      <h2>Featured Work</h2>
+      <p>Projects focused on practical problem-solving through language, structure, and design</p>
+    </div>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <h4>AWS SheBuilds Hapori Wahine</h4>
+        <p>Designed user journeys and digital materials for a national programme helping women build digital skills. Tested accessibility and messaging to ensure clarity and engagement throughout.</p>
+        <div class="project-tags">
+          <span class="project-tag">Journey Mapping</span>
+          <span class="project-tag">Content Testing</span>
+          <span class="project-tag">Inclusive Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h4>Samoa Pacificode</h4>
+        <p>Developed curriculum flow and learning resources for Pacific learners entering coding and digital literacy. Adapted content to meet local communication needs and storytelling styles.</p>
+        <div class="project-tags">
+          <span class="project-tag">Content Design</span>
+          <span class="project-tag">Localization</span>
+          <span class="project-tag">Learning Experience Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h4>Clinical Portfolio Platform</h4>
+        <p>Helped shift nursing portfolios from paper to digital by designing user prompts, structure, and training materials that reduced confusion and improved usability for students and educators.</p>
+        <div class="project-tags">
+          <span class="project-tag">UX Writing</span>
+          <span class="project-tag">Content Architecture</span>
+          <span class="project-tag">Change Support</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h4>BOLD Professional Development</h4>
+        <p>Interviewed educators and mapped user journeys to design a modular learning platform centered on clarity, autonomy, and measurable progress.</p>
+        <div class="project-tags">
+          <span class="project-tag">User Research</span>
+          <span class="project-tag">Prototyping</span>
+          <span class="project-tag">Content Flow</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Let's make something easy to use</h2>
+    <p>I'm always excited to collaborate on digital learning or UX projects that blend communication, design, and empathy.</p>
+    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Katie Prokop | UX & Content Design</p>
+    <div class="social-links">
+      <a href="mailto:prokopkatie@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/kateprokop" target="_blank">LinkedIn</a>
+      <a href="https://github.com/kateprokop" target="_blank">GitHub</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
