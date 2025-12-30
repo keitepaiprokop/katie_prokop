@@ -77,8 +77,43 @@ nav a.active {
   color: white;
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
+
+/* SKILLS FILTER */
+.skills-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+.filter-btn {
+  background: #e8eaf6;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-family: 'Public Sans', sans-serif;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+.filter-btn.all { 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+  color: white; 
+}
+
+.hidden { display: none !important; }
+
 .projects-grid {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 3rem;
 }
@@ -240,16 +275,52 @@ nav a.active {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
 }
-.video-embed {
+.flipbook-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
   border-radius: 12px;
-  overflow: hidden;
-  margin: 1.5rem 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 2px solid rgba(102, 126, 234, 0.1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.08);
 }
-.video-embed iframe {
+.flipbook-title {
+  font-family: 'Rubik', sans-serif;
+  color: #667eea;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.flipbook-viewer {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
+  height: 450px;
+}
+.flipbook-viewer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+}
+.flipbook-viewer iframe {
   width: 100%;
-  height: 315px;
+  height: 100%;
   border: none;
+  display: block;
+}
+.flipbook-cta {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+.flipbook-cta a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 .cta-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -282,28 +353,12 @@ footer {
   padding: 2rem;
   color: #666;
 }
-.section-divider {
-  font-family: 'Rubik', sans-serif;
-  font-size: 2.5rem;
-  text-align: center;
-  margin: 4rem 0 2rem;
-  color: #333;
-  position: relative;
-}
-.section-divider::after {
-  content: '';
-  display: block;
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  margin: 1rem auto;
-  border-radius: 2px;
-}
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   h1 { font-size: 2rem; }
   .project-card { padding: 1.5rem; }
   .project-title { font-size: 1.5rem; }
-  .video-embed iframe { height: 250px; }
+  .flipbook-viewer { height: 350px; }
+  .skills-filter { flex-direction: column; align-items: center; }
 }
 </style>
 </head>
@@ -322,89 +377,89 @@ footer {
     <p class="tagline">A showcase of product management, user research, and digital platform development across education technology and international markets</p>
   </header>
 
+  <!-- SKILLS FILTER -->
+  <div class="skills-filter">
+    <button class="filter-btn active all" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="agile">Agile PM</button>
+    <button class="filter-btn" data-filter="research">User Research</button>
+    <button class="filter-btn" data-filter="stakeholder">Stakeholder</button>
+    <button class="filter-btn" data-filter="learning">Learning Design</button>
+    <button class="filter-btn" data-filter="data">Data Analytics</button>
+    <button class="filter-btn" data-filter="international">International</button>
+  </div>
+
   <div class="projects-grid">
-
-  <!-- UPDATED: Dementia Care Training (CLEAR Description) -->
-<div class="project-card">
-  <div class="project-header">
-    <div>
-      <h2 class="project-title">Dementia Care Training Platform</h2>
+    <!-- 1. Dementia Care Training -->
+    <div class="project-card" data-skills="agile,scrum,stakeholder,learning,healthcare">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">Dementia Care Training</h2>
+        </div>
+        <span class="project-type">Product Management Lead</span>
+      </div>
+      <p class="project-description">
+        Led agile development of dementia care training across 4 NZQA Unit Standards. Coordinated 426 ākonga surveys, 9 SMEs from 14 organizations, and 6 Learning & Assessment Champions through 3 sprint reviews. Delivered in 4 months with continuous stakeholder feedback.
+      </p>
+      <a href="https://360.articulate.com/review/content/1b86c585-e61f-4f88-af4d-47c6709e3636/review" target="_blank" class="try-button">
+        <i class="fas fa-play-circle"></i> Launch Course Preview
+      </a>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Timeline:</span>
+          <span class="meta-value">4 Months Development</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role:</span>
+          <span class="meta-value">Agile Product Manager</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Team:</span>
+          <span class="meta-value">Careerforce</span>
+        </div>
+      </div>
+      <div class="project-impact">
+        <h4>Engagement Snapshot</h4>
+        <p><strong>Early Input:</strong> 426 ākonga survey, 10 staff drop-in, 15 Champions engaged<br>
+        <strong>Collaboration:</strong> 6 Champions (3 Dementia Facilitators), 2 ward visits, 3 sprint reviews<br>
+        <strong>Expert Input:</strong> 9 SMEs from 14 organizations co-designing assessments</p>
+      </div>
+      <div class="pm-highlight">
+        <h4>Product Management Process</h4>
+        <ul>
+          <li>Co-designed learning & assessment with SMEs, Facilitators, Moderation</li>
+          <li>Iterative storyboards refined through sprint reviews</li>
+          <li>426 ākonga feedback shaped learning pathways</li>
+          <li>Delivered 4 Unit Standards ready for assessment submission</li>
+          <li>Continuous Q&A feedback with Product Development team</li>
+        </ul>
+      </div>
+      <div class="skills-tags">
+        <span class="skill-tag">Agile PM</span>
+        <span class="skill-tag">Scrum</span>
+        <span class="skill-tag">Miro</span>
+        <span class="skill-tag">NZQA</span>
+        <span class="skill-tag">Stakeholder Co-Design</span>
+        <span class="skill-tag">Rise 360</span>
+        <span class="skill-tag">Learning Design</span>
+        <span class="skill-tag">Assessment Development</span>
+        <span class="skill-tag">Healthcare Training</span>
+      </div>
     </div>
-    <span class="project-type">Product Management Lead</span>
-  </div>
-  
-  <p class="project-description">
-    Led agile development of dementia care training across 4 NZQA Unit Standards. Coordinated 426 ākonga surveys, 9 SMEs from 14 organizations, and 6 Learning & Assessment Champions through 3 sprint reviews. Delivered in 4 months with continuous stakeholder feedback.
-  </p>
 
-  <a href="https://360.articulate.com/review/content/1b86c585-e61f-4f88-af4d-47c6709e3636/review" target="_blank" class="try-button">
-    <i class="fas fa-play-circle"></i> Launch Course Preview
-  </a>
-
-  <div class="project-meta">
-    <div class="meta-item">
-      <span class="meta-label">Timeline:</span>
-      <span class="meta-value">4 Months Development</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Role:</span>
-      <span class="meta-value">Agile Product Manager</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Team:</span>
-      <span class="meta-value">Careerforce</span>
-    </div>
-  </div>
-
-  <div class="project-impact">
-    <h4>Engagement Snapshot</h4>
-    <p><strong>Early Input:</strong> 426 ākonga survey, 10 staff drop-in, 15 Champions engaged<br>
-    <strong>Collaboration:</strong> 6 Champions (3 Dementia Facilitators), 2 ward visits, 3 sprint reviews<br>
-    <strong>Expert Input:</strong> 9 SMEs from 14 organizations co-designing assessments</p>
-  </div>
-
-  <div class="pm-highlight">
-    <h4>Product Management Process</h4>
-    <ul>
-      <li>Co-designed learning & assessment with SMEs, Facilitators, Moderation</li>
-      <li>Iterative storyboards refined through sprint reviews</li>
-      <li>426 ākonga feedback shaped learning pathways</li>
-      <li>Delivered 4 Unit Standards ready for assessment submission</li>
-      <li>Continuous Q&A feedback with Product Development team</li>
-    </ul>
-  </div>
-
-  <div class="skills-tags">
-    <span class="skill-tag">Agile PM</span>
-    <span class="skill-tag">Scrum</span>
-    <span class="skill-tag">Miro</span>
-    <span class="skill-tag">NZQA</span>
-    <span class="skill-tag">Stakeholder Co-Design</span>
-    <span class="skill-tag">Rise 360</span>
-    <span class="skill-tag">Learning Design</span>
-    <span class="skill-tag">Assessment Development</span>
-    <span class="skill-tag">Healthcare Training</span>
-  </div>
-</div>
-  
-    <!-- AWS SheBuilds Project -->
-<div class="project-card" id="aws-shebuilds">
+    <!-- 2. AWS SheBuilds -->
+    <div class="project-card" id="aws-shebuilds" data-skills="research,journey,testing,prototyping,analytics,data">
       <div class="project-header">
         <div>
           <h2 class="project-title">AWS SheBuilds Hapori Wahine</h2>
         </div>
         <span class="project-type">Product Design & Research</span>
       </div>
-      
       <p class="project-description">
         Led end-to-end product design for a large-scale digital literacy programme targeting women in tech. Designed participant journeys, created interactive learning modules, and conducted iterative user testing to optimize engagement and completion rates.
       </p>
-
       <a href="https://youtu.be/HVLq7rNzdcw" target="_blank" class="video-link">
-        <i class="fab fa-youtube"></i>
-        Watch Workshop Highlights
+        <i class="fab fa-youtube"></i> Watch Workshop Highlights
       </a>
-
       <div class="project-meta">
         <div class="meta-item">
           <span class="meta-label">Year:</span>
@@ -419,12 +474,10 @@ footer {
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
-
       <div class="project-impact">
         <h4>Impact & Results</h4>
         <p>Increased user engagement through data-driven iterations based on real user testing. Successfully delivered accessible learning content for diverse audiences with varying technical backgrounds.</p>
       </div>
-
       <div class="pm-highlight">
         <h4>Product Management Skills Applied</h4>
         <ul>
@@ -435,7 +488,6 @@ footer {
           <li>Collaborated with stakeholders to align on product goals</li>
         </ul>
       </div>
-
       <div class="skills-tags">
         <span class="skill-tag">User Research</span>
         <span class="skill-tag">Journey Mapping</span>
@@ -445,19 +497,17 @@ footer {
       </div>
     </div>
 
-    <!-- Samoa Pacificode Project -->
-<div class="project-card" id="samoa-pacificode">
+    <!-- 3. Samoa Pacificode -->
+    <div class="project-card" id="samoa-pacificode" data-skills="stakeholder,international,funding,requirements">
       <div class="project-header">
         <div>
           <h2 class="project-title">Samoa Pacificode</h2>
         </div>
         <span class="project-type">International Product Delivery</span>
       </div>
-      
       <p class="project-description">
         Managed end-to-end product delivery for international digital skills program across Pacific regions. Secured funding from PCF and MESC Samoa, coordinated cross-jurisdictional stakeholders, and designed training workflows adapted to local contexts.
       </p>
-
       <div class="project-meta">
         <div class="meta-item">
           <span class="meta-label">Year:</span>
@@ -472,12 +522,10 @@ footer {
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
-
       <div class="project-impact">
         <h4>Impact & Results</h4>
         <p>Successfully secured international funding and delivered culturally-appropriate digital literacy training across multiple Pacific regions. Demonstrated ability to navigate complex stakeholder relationships across different countries and regulatory environments.</p>
       </div>
-
       <div class="pm-highlight">
         <h4>Product Management Skills Applied</h4>
         <ul>
@@ -488,7 +536,6 @@ footer {
           <li>Adapted product features for local user needs</li>
         </ul>
       </div>
-
       <div class="skills-tags">
         <span class="skill-tag">Stakeholder Management</span>
         <span class="skill-tag">International Delivery</span>
@@ -498,19 +545,30 @@ footer {
       </div>
     </div>
 
-    <!-- BOLD PLD Project -->
-<div class="project-card" id="bold-pd">
+    <!-- 4. BOLD Professional Development -->
+    <div class="project-card" id="bold-pd" data-skills="requirements,data,agile,learning">
       <div class="project-header">
         <div>
-          <h2 class="project-title">BOLD Professional Development Platform</h2>
+          <h2 class="project-title">BOLD Professional Development</h2>
         </div>
         <span class="project-type">Product Strategy & Delivery</span>
       </div>
-      
       <p class="project-description">
         Led product development for blended professional learning platform serving 100+ users. Gathered requirements from diverse stakeholders, analyzed skills gaps through data collection, designed modular learning architecture, and delivered MVP on schedule using agile methodologies.
       </p>
-
+      <div class="flipbook-section">
+        <div class="flipbook-title">
+          <i class="fas fa-book-open"></i> BOLD Platform Documentation
+        </div>
+        <div class="flipbook-viewer">
+          <iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/keitepaiprokop/katie_prokop/main/assets/flipbooks/BOLD.pdf&embedded=true" title="BOLD Professional Development"></iframe>
+        </div>
+        <div class="flipbook-cta">
+          <a href="https://github.com/keitepaiprokop/katie_prokop/raw/main/assets/flipbooks/BOLD.pdf" target="_blank">
+            <i class="fas fa-download"></i> Download Full PDF
+          </a>
+        </div>
+      </div>
       <div class="project-meta">
         <div class="meta-item">
           <span class="meta-label">Year:</span>
@@ -525,12 +583,10 @@ footer {
           <span class="meta-value">NMIT (Te Pūkenga)</span>
         </div>
       </div>
-
       <div class="project-impact">
         <h4>Impact & Results</h4>
         <p>Delivered phase one on schedule, creating scalable platform architecture. Used Power BI analytics to identify training needs and prioritize features based on user data. Successfully launched to 69 tutors and 31 support staff.</p>
       </div>
-
       <div class="pm-highlight">
         <h4>Product Management Skills Applied</h4>
         <ul>
@@ -541,7 +597,6 @@ footer {
           <li>Built analytics dashboards for measuring success metrics</li>
         </ul>
       </div>
-
       <div class="skills-tags">
         <span class="skill-tag">Requirements Gathering</span>
         <span class="skill-tag">Data Analytics</span>
@@ -552,19 +607,30 @@ footer {
       </div>
     </div>
 
-    <!-- Clinical Portfolios Project -->
-<div class="project-card" id="clinical-portfolio">
+    <!-- 5. Clinical Portfolio -->
+    <div class="project-card" id="clinical-portfolio" data-skills="digital,change,compliance,stakeholder,workshop">
       <div class="project-header">
         <div>
           <h2 class="project-title">Clinical Portfolio Digital Transformation</h2>
         </div>
         <span class="project-type">Digital Transformation</span>
       </div>
-      
       <p class="project-description">
         Drove digital transformation of Bachelor of Nursing portfolios from paper to digital platform. Collaborated with clinical educators, IT teams, and hospital stakeholders to ensure regulatory compliance while improving student and educator experience.
       </p>
-
+      <div class="flipbook-section">
+        <div class="flipbook-title">
+          <i class="fas fa-book-open"></i> Nursing Portfolio Implementation
+        </div>
+        <div class="flipbook-viewer">
+          <iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/keitepaiprokop/katie_prokop/main/assets/flipbooks/mahara.pdf&embedded=true" title="NMIT Clinical Portfolios"></iframe>
+        </div>
+        <div class="flipbook-cta">
+          <a href="https://github.com/keitepaiprokop/katie_prokop/raw/main/assets/flipbooks/mahara.pdf" target="_blank">
+            <i class="fas fa-download"></i> Download Full PDF
+          </a>
+        </div>
+      </div>
       <div class="project-meta">
         <div class="meta-item">
           <span class="meta-label">Year:</span>
@@ -579,12 +645,10 @@ footer {
           <span class="meta-value">NMIT Nursing Department</span>
         </div>
       </div>
-
       <div class="project-impact">
         <h4>Impact & Results</h4>
         <p>Eliminated geographical barriers for portfolio sharing, enabling remote feedback and collaboration. Ensured compliance with Nursing Council and healthcare sector requirements while modernizing workflows.</p>
       </div>
-
       <div class="pm-highlight">
         <h4>Product Management Skills Applied</h4>
         <ul>
@@ -595,7 +659,6 @@ footer {
           <li>Conducted workshops to gather feedback and iterate</li>
         </ul>
       </div>
-
       <div class="skills-tags">
         <span class="skill-tag">Digital Transformation</span>
         <span class="skill-tag">Change Management</span>
@@ -605,18 +668,30 @@ footer {
       </div>
     </div>
 
-    <!-- K-12 Curriculum Project -->
-    <div class="project-card">
+    <!-- 6. K-12 Curriculum -->
+    <div class="project-card" data-skills="content,udl,curriculum,learning,testing">
       <div class="project-header">
         <div>
-          <h2 class="project-title">K-12 Curriculum Resource Platform</h2>
+          <h2 class="project-title">K-12 Curriculum Alignment</h2>
         </div>
         <span class="project-type">Content Strategy & Product Development</span>
       </div>
-      
       <p class="project-description">
         Developed standardized educational content for K-12 grades aligned with global curriculum standards. Created 40 hours of learning materials per grade level with emphasis on Universal Design for Learning, gamification, and inquiry-based projects.
       </p>
+      <div class="flipbook-section">
+        <div class="flipbook-title">
+          <i class="fas fa-book-open"></i> Curriculum Alignment Documentation
+        </div>
+        <div class="flipbook-viewer">
+          <iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/keitepaiprokop/katie_prokop/main/assets/flipbooks/Curriculumn%20alignment.pdf&embedded=true" title="K-12 Curriculum Alignment"></iframe>
+        </div>
+        <div class="flipbook-cta">
+          <a href="https://github.com/keitepaiprokop/katie_prokop/raw/main/assets/flipbooks/Curriculumn%20alignment.pdf" target="_blank">
+            <i class="fas fa-download"></i> Download Full PDF
+          </a>
+        </div>
+      </div>
       <div class="project-meta">
         <div class="meta-item">
           <span class="meta-label">Year:</span>
@@ -631,12 +706,10 @@ footer {
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
-
       <div class="project-impact">
         <h4>Impact & Results</h4>
         <p>Created scalable, globally-aligned curriculum resources serving students across multiple countries. Designed with accessibility and inclusion principles, ensuring broad market reach and positive user outcomes.</p>
       </div>
-
       <div class="pm-highlight">
         <h4>Product Management Skills Applied</h4>
         <ul>
@@ -647,7 +720,6 @@ footer {
           <li>Created feedback loops for continuous improvement</li>
         </ul>
       </div>
-
       <div class="skills-tags">
         <span class="skill-tag">Content Strategy</span>
         <span class="skill-tag">UDL</span>
@@ -657,136 +729,218 @@ footer {
         <span class="skill-tag">Agile Development</span>
       </div>
     </div>
-  </div>
 
-  <!-- TENZ Webinars - Replace K-12 card -->
-<div class="project-card">
-  <div class="project-header">
-    <div>
-      <h2 class="project-title">TENZ Webinars</h2>
+    <!-- 7. TENZ Webinars -->
+    <div class="project-card" data-skills="presentation,learning,content,curriculum">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">TENZ Webinars</h2>
+        </div>
+        <span class="project-type">Educational Webinars</span>
+      </div>
+      <p class="project-description">
+        Co-presented TENZ webinars on Computational Thinking (Y1-8) and AI classroom integration. Shared         practical strategies for Digital Technologies across learning areas with free teacher resources and Code Avengers platform trial.
+      </p>
+      <a href="https://youtu.be/BhB7HKmLK4c" target="_blank" class="video-link">
+        <i class="fab fa-youtube"></i> Computational Thinking Webinar
+      </a>
+      <a href="https://youtu.be/fl1zxdzE8AQ" target="_blank" class="video-link">
+        <i class="fab fa-youtube"></i> AI Integration Webinar
+      </a>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Year:</span>
+          <span class="meta-value">2023</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role:</span>
+          <span class="meta-value">Presenter / Learning Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Client:</span>
+          <span class="meta-value">TENZ</span>
+        </div>
+      </div>
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Equipped educators with practical DT integration strategies across curriculum areas. Provided free resources and platform trials to enhance classroom technology implementation.</p>
+      </div>
+      <div class="pm-highlight">
+        <h4>Product Management Skills Applied</h4>
+        <ul>
+          <li>Content strategy for teacher professional development</li>
+          <li>Curriculum alignment with NZ Digital Technologies</li>
+          <li>Practical resource development for classroom use</li>
+          <li>Platform demonstration and teacher onboarding</li>
+          <li>Audience engagement through interactive webinars</li>
+        </ul>
+      </div>
+      <div class="skills-tags">
+        <span class="skill-tag">Presentation</span>
+        <span class="skill-tag">Facilitation</span>
+        <span class="skill-tag">Learning Design</span>
+        <span class="skill-tag">Content Creation</span>
+        <span class="skill-tag">Resource Development</span>
+        <span class="skill-tag">Curriculum Integration</span>
+      </div>
     </div>
-    <span class="project-type">Educational Webinars</span>
-  </div>
-  
-  <p class="project-description">
-    Co-presented TENZ webinars on Computational Thinking (Y1-8) and AI classroom integration. Shared practical strategies for Digital Technologies across learning areas with free teacher resources and Code Avengers platform trial.
-  </p>
 
-  <a href="https://youtu.be/BhB7HKmLK4c" target="_blank" class="video-link">
-    <i class="fab fa-youtube"></i>
-    Computational Thinking Webinar
-  </a>
-  <a href="https://youtu.be/fl1zxdzE8AQ" target="_blank" class="video-link">
-    <i class="fab fa-youtube"></i>
-    AI Integration Webinar
-  </a>
-
-  <div class="project-meta">
-    <div class="meta-item">
-      <span class="meta-label">Year:</span>
-      <span class="meta-value">2023</span>
+    <!-- 8. Hour of Code Courses -->
+    <div class="project-card" data-skills="interactive,storytelling,learning,content">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">Interactive Hour of Code Courses</h2>
+        </div>
+        <span class="project-type">Digital Learning Assets</span>
+      </div>
+      <p class="project-description">
+        Created three engaging Hour of Code courses: AI evolution (Silicon Synapses), blockchain/metaverse (New Kids on the Blockchain), and kindergarten computing/literacy (Keyboard Quest). Featured interactive widgets, storytelling, and inclusive design for global audiences.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <a href="https://learn.codeavengers.com/impacts-of-computing/900" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+          <i class="fas fa-play-circle"></i> Silicon Synapses: AI Evolution
+        </a>
+        <a href="https://learn.codeavengers.com/impacts-of-computing/1000" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+          <i class="fas fa-play-circle"></i> New Kids on the Blockchain
+        </a>
+        <a href="https://learn.codeavengers.com/impacts-of-computing/800" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+          <i class="fas fa-play-circle"></i> Keyboard Quest
+        </a>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Years:</span>
+          <span class="meta-value">2022-2023</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Client:</span>
+          <span class="meta-value">Code Avengers</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Tools:</span>
+          <span class="meta-value">Adobe Suite, After Effects, CA Markup</span>
+        </div>
+      </div>
+      <div class="project-impact">
+        <h4>Impact & Results</h4>
+        <p>Delivered accessible, engaging computing education for global audiences from kindergarten to advanced learners. Showcased innovative pedagogy through interactive storytelling and multimedia.</p>
+      </div>
+      <div class="skills-tags">
+        <span class="skill-tag">Interactive Design</span>
+        <span class="skill-tag">Storytelling</span>
+        <span class="skill-tag">Early Childhood</span>
+        <span class="skill-tag">AI/Web3 Education</span>
+        <span class="skill-tag">Video Production</span>
+        <span class="skill-tag">Inclusive Learning</span>
+      </div>
     </div>
-    <div class="meta-item">
-      <span class="meta-label">Role:</span>
-      <span class="meta-value">Presenter / Learning Designer</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Client:</span>
-      <span class="meta-value">TENZ</span>
-    </div>
-  </div>
 
-  <div class="project-impact">
-    <h4>Impact & Results</h4>
-    <p>Equipped educators with practical DT integration strategies across curriculum areas. Provided free resources and platform trials to enhance classroom technology implementation.</p>
-  </div>
-
-  <div class="pm-highlight">
-    <h4>Product Management Skills Applied</h4>
-    <ul>
-      <li>Content strategy for teacher professional development</li>
-      <li>Curriculum alignment with NZ Digital Technologies</li>
-      <li>Practical resource development for classroom use</li>
-      <li>Platform demonstration and teacher onboarding</li>
-      <li>Audience engagement through interactive webinars</li>
-    </ul>
-  </div>
-
-  <div class="skills-tags">
-    <span class="skill-tag">Presentation</span>
-    <span class="skill-tag">Facilitation</span>
-    <span class="skill-tag">Learning Design</span>
-    <span class="skill-tag">Content Creation</span>
-    <span class="skill-tag">Resource Development</span>
-    <span class="skill-tag">Curriculum Integration</span>
-    </div>
-  </div>
-
-<!-- SINGLE Digital Assets Card - All 3 courses -->
-  <div class="project-card" style="margin-top: 3rem;">
-  <div class="project-header">
-    <div>
-      <h2 class="project-title">Interactive Hour of Code Courses</h2>
-    </div>
-    <span class="project-type">Digital Learning Assets</span>
-  </div>
-  
-  <p class="project-description">
-    Created three engaging Hour of Code courses: AI evolution (Silicon Synapses), blockchain/metaverse (New Kids on the Blockchain), and kindergarten computing/literacy (Keyboard Quest). Featured interactive widgets, storytelling, and inclusive design for global audiences.
-  </p>
-
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-    <a href="https://learn.codeavengers.com/impacts-of-computing/900" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-      <i class="fas fa-play-circle"></i> Silicon Synapses: AI Evolution
-    </a>
-    <a href="https://learn.codeavengers.com/impacts-of-computing/1000" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-      <i class="fas fa-play-circle"></i> New Kids on the Blockchain
-    </a>
-    <a href="https://learn.codeavengers.com/impacts-of-computing/800" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-      <i class="fas fa-play-circle"></i> Keyboard Quest
-    </a>
-  </div>
-
-  <div class="project-meta">
-    <div class="meta-item">
-      <span class="meta-label">Years:</span>
-      <span class="meta-value">2022-2023</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Client:</span>
-      <span class="meta-value">Code Avengers</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Tools:</span>
-      <span class="meta-value">Adobe Suite, After Effects, CA Markup</span>
+    <!-- 9. Master's Thesis Research -->
+    <div class="project-card" id="masters-thesis" data-skills="research,data,edtech,analysis">
+      <div class="project-header">
+        <div>
+          <h2 class="project-title">Master's Thesis Research</h2>
+        </div>
+        <span class="project-type">Academic Research</span>
+      </div>
+      <p class="project-description">
+        Conducted in-depth master's thesis research exploring innovative educational methodologies and technology integration. Combined quantitative analysis, qualitative interviews, and practical implementation to produce actionable insights.
+      </p>
+      <div class="flipbook-section">
+        <div class="flipbook-title">
+          <i class="fas fa-graduation-cap"></i> Complete Master's Thesis
+        </div>
+        <div class="flipbook-viewer">
+          <iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/keitepaiprokop/katie_prokop/main/assets/flipbooks/Thesis%201%20Katie%201.pdf&embedded=true" title="Master's Thesis Research"></iframe>
+        </div>
+        <div class="flipbook-cta">
+          <a href="https://github.com/keitepaiprokop/katie_prokop/raw/main/assets/flipbooks/Thesis%201%20Katie%201.pdf" target="_blank">
+            <i class="fas fa-download"></i> Download Thesis PDF
+          </a>
+        </div>
+      </div>
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Type:</span>
+          <span class="meta-value">Master's Thesis</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Focus:</span>
+          <span class="meta-value">EdTech Research</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Methodology:</span>
+          <span class="meta-value">Mixed Methods</span>
+        </div>
+      </div>
+      <div class="project-impact">
+        <h4>Research Impact</h4>
+        <p>Produced comprehensive framework for evaluating digital learning effectiveness. Findings informed product development strategies across multiple educational platforms and contributed to academic discourse on technology-enhanced learning.</p>
+      </div>
+      <div class="pm-highlight">
+        <h4>Research Skills Applied</h4>
+        <ul>
+          <li>Quantitative data analysis and statistical modeling</li>
+          <li>Qualitative interviews with educators and learners</li>
+          <li>Literature review across 50+ peer-reviewed sources</li>
+          <li>Developed validated research instruments</li>
+          <li>Applied findings to real-world product design</li>
+        </ul>
+      </div>
+      <div class="skills-tags">
+        <span class="skill-tag">Research Methods</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">Academic Writing</span>
+        <span class="skill-tag">EdTech</span>
+        <span class="skill-tag">Mixed Methods</span>
+        <span class="skill-tag">Literature Review</span>
+        <span class="skill-tag">Statistical Analysis</span>
+      </div>
     </div>
   </div>
 
-  <div class="project-impact">
-    <h4>Impact & Results</h4>
-    <p>Delivered accessible, engaging computing education for global audiences from kindergarten to advanced learners. Showcased innovative pedagogy through interactive storytelling and multimedia.</p>
-  </div>
+  <section class="cta-section">
+    <h2>Let's Discuss Your Product Needs</h2>
+    <p>I'm passionate about building products that solve real problems through user research, data-driven decisions, and collaborative development.</p>
+    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
+  </section>
 
-  <div class="skills-tags">
-    <span class="skill-tag">Interactive Design</span>
-    <span class="skill-tag">Storytelling</span>
-    <span class="skill-tag">Early Childhood</span>
-    <span class="skill-tag">AI/Web3 Education</span>
-    <span class="skill-tag">Video Production</span>
-    <span class="skill-tag">Inclusive Learning</span>
-  </div>
+  <footer>
+    <p>&copy; 2025 Katie Prokop | Product Manager</p>
+    <p style="margin-top: 0.5rem;">Nelson, New Zealand 🇳🇿</p>
+  </footer>
 </div>
 
-<section class="cta-section">
-  <h2>Let's Discuss Your Product Needs</h2>
-  <p>I'm passionate about building products that solve real problems through user research, data-driven decisions, and collaborative development.</p>
-  <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
-</section>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
 
-<footer>
-  <p>&copy; 2025 Katie Prokop | Product Manager</p>
-  <p style="margin-top: 0.5rem;">Nelson, New Zealand 🇳🇿</p>
-</footer>
-</div>
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterBtns.forEach(b => b.classList.remove('active'));
+      // Add active to clicked button
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        if (filterValue === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          const cardSkills = card.getAttribute('data-skills');
+          if (cardSkills && cardSkills.includes(filterValue)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
+
