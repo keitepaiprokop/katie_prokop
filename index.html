@@ -26,8 +26,6 @@ body {
   font-family: 'Public Sans', sans-serif; 
   line-height: 1.7; 
   color: var(--text-dark);
-  background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
-  min-height: 100vh;
 }
 
 nav {
@@ -71,24 +69,63 @@ nav a.active {
   max-width: 1200px; 
   margin: 0 auto; 
   padding: 1rem 2rem 2rem;
-  background: white;
-  min-height: 100vh;
-  border-radius: 0 0 32px 32px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-image: url('https://www.bettyrajanmd.com/wp-content/uploads/2025/01/blue-watercolor-texture.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 32px; 
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  position: relative;
+  overflow: hidden;
 }
 
-/* 1. HERO ROW: TITLE + PHOTO (inline) */
+.container::before { 
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: hue-rotate(60deg) saturate(1.3);  /* START: Blue-ish */
+  border-radius: 32px;
+  z-index: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container::after { 
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, 
+    rgba(255,255,255,0.95) 0%, 
+    rgba(255,255,255,0.8) 20%, 
+    rgba(255,255,255,0.3) 50%, 
+    transparent 70%);
+  border-radius: 32px;
+  z-index: 1;
+}
+
+.container > * { position: relative; z-index: 2; }
+
+body.has-scrolled .container::before {
+  filter: hue-rotate(90deg) saturate(1.6) !important;  
+  opacity: 0.92;
+}
+
 .hero-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
   padding: 3rem 0 4rem 0;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .hero-text {
   flex: 1;
+  max-width: 600px;
+  text-align: left;
 }
 
 .hero-text h1 { 
@@ -116,7 +153,6 @@ nav a.active {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 2rem;
 }
 
 .hero-image {
@@ -125,7 +161,6 @@ nav a.active {
   height: 420px;
   border-radius: 24px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  object-position: bottom center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -139,6 +174,7 @@ nav a.active {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: bottom center;
   border-radius: 24px;
   transition: transform 0.4s ease;
 }
@@ -147,7 +183,6 @@ nav a.active {
   transform: scale(1.1);
 }
 
-/* 3+4. PROFILE + EXPERTISE - SAME ROW */
 .profile-expertise-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -156,7 +191,7 @@ nav a.active {
 }
 
 .profile-section {
-  background: var(--gray-light);
+  background: rgba(248, 249, 250, 0.8);
   padding: 2.5rem;
   border-radius: 24px;
   border-left: 5px solid var(--purple);
@@ -176,17 +211,6 @@ nav a.active {
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
-}
-
-.profile-section .tldr {
-  font-style: italic;
-  color: var(--purple);
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--gray);
-  display: block;
 }
 
 .expertise-section {
@@ -230,7 +254,6 @@ nav a.active {
   box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
 }
 
-/* SKILLS */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -239,7 +262,7 @@ nav a.active {
   margin-bottom: 4rem;
 }
 .skill-card {
-  background: white;
+  background: rgba(255,255,255,0.9);
   padding: 2.5rem 2rem 2rem;
   border-radius: 24px;
   border: 1px solid var(--gray);
@@ -295,7 +318,6 @@ nav a.active {
   border-color: var(--purple);
 }
 
-/* PROJECTS */
 .projects-section {
   padding: 2rem 0 3rem 0;
   margin-bottom: 4rem;
@@ -321,7 +343,7 @@ nav a.active {
   gap: 2rem;
 }
 .project-card {
-  background: white;
+  background: rgba(255,255,255,0.9);
   border: 1px solid var(--gray);
   border-radius: 20px;
   padding: 2.5rem;
@@ -370,7 +392,6 @@ nav a.active {
   font-weight: 500;
 }
 
-/* CTA */
 .cta-section {
   background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
   color: white;
@@ -411,7 +432,6 @@ nav a.active {
   box-shadow: 0 25px 50px rgba(255,255,255,0.5);
 }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 3rem 0 2rem;
@@ -443,7 +463,6 @@ footer {
   box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   nav {
     margin: 1.5rem auto 2rem;
@@ -492,46 +511,37 @@ footer {
 
   <div class="container">
     
-    <!-- 1. HERO ROW: TITLE + PHOTO SIDE-BY-SIDE -->
     <section class="hero-row">
-      <!-- LEFT: Title + Tagline + Location -->
       <div class="hero-text">
         <h1>KATIE PROKOP</h1>
         <p class="tagline">Product Strategist | User-Centered | Problem Solver</p>
         <p class="location"><i class="fa-solid fa-location-dot"></i> Nelson, New Zealand</p>
       </div>
       
-      <!-- RIGHT: Portrait -->
       <div class="hero-image">
         <img src="assets/portrait.jpg" alt="Katie Prokop">
       </div>
     </section>
 
-    <!-- 2. PROFILE + EXPERTISE (SAME ROW) -->
     <section class="profile-expertise-row">
-      <!-- LEFT: PROFILE -->
       <div class="profile-section">
         <h3>PROFILE</h3>
-        <p>Digital learning specialist passionate about extraordinary user experiences and technical products. Expert in translating customer insights into accessible eLearning via end-to-end development, agile delivery, and customer interviews.</p>
-        <p class="tldr">tldr: <strong>I like building interesting things that work well.</strong></p>
+        <p>Expert in translating complex technical challenges into seamless, human-centered solutions through research, prototyping, and cross-functional collaboration.</p>
+        <p>tldr: <strong>I like building interesting things that work well.</strong></p>
       </div>
       
-      <!-- RIGHT: EXPERTISE -->
       <div class="expertise-section">
         <h2>EXPERTISE</h2>
         <p>Problem solving through design systems, eLearning development, LMS platforms, stakeholder codesign, analytics, and agile management.</p>
         <div class="pills">
-          <span class="pill">Design Systems</span>
-          <span class="pill">eLearning Development</span>
-          <span class="pill">LMS Platforms</span>
-          <span class="pill">Stakeholder Codesign</span>
-          <span class="pill">Analytics & Data</span>
-          <span class="pill">Agile Management</span>
+          <span class="pill">Developer Experience</span>
+          <span class="pill">AI Workflows</span>
+          <span class="pill">Product Design</span>
+          <span class="pill">Complex Systems</span>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section class="skills-grid">
       <div class="skill-card">
         <div class="skill-card-header">
@@ -562,7 +572,6 @@ footer {
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section class="projects-section">
       <div class="section-header">
         <h2>Featured Work</h2>
@@ -608,7 +617,6 @@ footer {
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section">
       <h2>Reach out if you'd like to chat</h2>
       <p>Available for product management, UX design, and developer experience projects</p>
@@ -618,7 +626,6 @@ footer {
       </a>
     </section>
 
-    <!-- FOOTER -->
     <footer>
       <p>&copy; 2025 Katie Prokop</p>
       <div class="social-links">
@@ -626,7 +633,7 @@ footer {
           <i class="fa-solid fa-envelope"></i>
           prokopkatie@gmail.com
         </a>
-        <a href="https://www.linkedin.com/in/kateprokop" target="_blank">
+        <a href="https://www.linkedin.com/in/katie-prokop-7b602769/" target="_blank">
           <i class="fa-brands fa-linkedin"></i>
           LinkedIn
         </a>
@@ -637,5 +644,15 @@ footer {
       </div>
     </footer>
   </div>
+<script>
+let scrollTrigger = window.innerHeight / 2;  // HALFWAY DOWN PAGE
+
+window.addEventListener('scroll', () => {
+  document.body.classList.toggle('has-scrolled', window.scrollY > scrollTrigger);
+  
+  // Update trigger for resize
+  scrollTrigger = window.innerHeight / 2;
+});
+</script>
 </body>
 </html>
