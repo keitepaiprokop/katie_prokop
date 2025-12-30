@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
@@ -41,26 +42,40 @@ h1 {
   margin: 0 auto;
 }
 nav {
-  background: white;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
   padding: 1rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 50px;
+  margin: 2rem auto 2.5rem;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
 }
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 nav a {
   color: #667eea;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.3s;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
-nav a:hover, nav a.active {
+nav a:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
   color: #764ba2;
+}
+nav a.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 .projects-grid {
   display: grid;
@@ -107,28 +122,29 @@ nav a:hover, nav a.active {
   margin-bottom: 1.5rem;
 }
 .project-meta {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem 2rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 0;
   margin-bottom: 1.5rem;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
 }
 .meta-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 .meta-label {
   font-weight: 600;
   color: #667eea;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 .meta-value {
-  color: #666;
+  color: #555;
+  font-size: 0.9rem;
 }
 .project-impact {
   background: #e8f5e9;
@@ -187,6 +203,54 @@ nav a:hover, nav a.active {
   left: 0;
   color: #ff9800;
 }
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #667eea;
+  border-radius: 25px;
+  margin: 1rem 0.5rem 1rem 0;
+  transition: all 0.3s ease;
+}
+.video-link:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+.try-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border-radius: 30px;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+.try-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+.video-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.video-embed iframe {
+  width: 100%;
+  height: 315px;
+  border: none;
+}
 .cta-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -218,11 +282,28 @@ footer {
   padding: 2rem;
   color: #666;
 }
+.section-divider {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 4rem 0 2rem;
+  color: #333;
+  position: relative;
+}
+.section-divider::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 1rem auto;
+  border-radius: 2px;
+}
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
   .project-card { padding: 1.5rem; }
   .project-title { font-size: 1.5rem; }
-  .project-meta { grid-template-columns: 1fr; }
+  .video-embed iframe { height: 250px; }
 }
 </style>
 </head>
@@ -230,9 +311,8 @@ footer {
 <div class="container">
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="#work" class="active">Work</a></li>
-      <li><a href="/about">About</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
       <li><a href="mailto:prokopkatie@gmail.com">Contact</a></li>
     </ul>
   </nav>
@@ -243,6 +323,70 @@ footer {
   </header>
 
   <div class="projects-grid">
+
+  <!-- UPDATED: Dementia Care Training (CLEAR Description) -->
+<div class="project-card">
+  <div class="project-header">
+    <div>
+      <h2 class="project-title">Dementia Care Training Platform</h2>
+    </div>
+    <span class="project-type">Product Management Lead</span>
+  </div>
+  
+  <p class="project-description">
+    Led agile development of dementia care training across 4 NZQA Unit Standards. Coordinated 426 ākonga surveys, 9 SMEs from 14 organizations, and 6 Learning & Assessment Champions through 3 sprint reviews. Delivered in 4 months with continuous stakeholder feedback.
+  </p>
+
+  <a href="https://360.articulate.com/review/content/1b86c585-e61f-4f88-af4d-47c6709e3636/review" target="_blank" class="try-button">
+    <i class="fas fa-play-circle"></i> Launch Course Preview
+  </a>
+
+  <div class="project-meta">
+    <div class="meta-item">
+      <span class="meta-label">Timeline:</span>
+      <span class="meta-value">4 Months Development</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Role:</span>
+      <span class="meta-value">Agile Product Manager</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Team:</span>
+      <span class="meta-value">Careerforce</span>
+    </div>
+  </div>
+
+  <div class="project-impact">
+    <h4>Engagement Snapshot</h4>
+    <p><strong>Early Input:</strong> 426 ākonga survey, 10 staff drop-in, 15 Champions engaged<br>
+    <strong>Collaboration:</strong> 6 Champions (3 Dementia Facilitators), 2 ward visits, 3 sprint reviews<br>
+    <strong>Expert Input:</strong> 9 SMEs from 14 organizations co-designing assessments</p>
+  </div>
+
+  <div class="pm-highlight">
+    <h4>Product Management Process</h4>
+    <ul>
+      <li>Co-designed learning & assessment with SMEs, Facilitators, Moderation</li>
+      <li>Iterative storyboards refined through sprint reviews</li>
+      <li>426 ākonga feedback shaped learning pathways</li>
+      <li>Delivered 4 Unit Standards ready for assessment submission</li>
+      <li>Continuous Q&A feedback with Product Development team</li>
+    </ul>
+  </div>
+
+  <div class="skills-tags">
+    <span class="skill-tag">Agile PM</span>
+    <span class="skill-tag">Scrum</span>
+    <span class="skill-tag">Miro</span>
+    <span class="skill-tag">NZQA</span>
+    <span class="skill-tag">Stakeholder Co-Design</span>
+    <span class="skill-tag">Rise 360</span>
+    <span class="skill-tag">Learning Design</span>
+    <span class="skill-tag">Assessment Development</span>
+    <span class="skill-tag">Healthcare Training</span>
+  </div>
+</div>
+  
     <!-- AWS SheBuilds Project -->
     <div class="project-card">
       <div class="project-header">
@@ -256,17 +400,22 @@ footer {
         Led end-to-end product design for a large-scale digital literacy programme targeting women in tech. Designed participant journeys, created interactive learning modules, and conducted iterative user testing to optimize engagement and completion rates.
       </p>
 
+      <a href="https://youtu.be/HVLq7rNzdcw" target="_blank" class="video-link">
+        <i class="fab fa-youtube"></i>
+        Watch Workshop Highlights
+      </a>
+
       <div class="project-meta">
         <div class="meta-item">
-          <span class="meta-label">Year</span>
+          <span class="meta-label">Year:</span>
           <span class="meta-value">2023-2024</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Role</span>
+          <span class="meta-label">Role:</span>
           <span class="meta-value">Content Developer / Product Designer</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Company</span>
+          <span class="meta-label">Company:</span>
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
@@ -311,15 +460,15 @@ footer {
 
       <div class="project-meta">
         <div class="meta-item">
-          <span class="meta-label">Year</span>
+          <span class="meta-label">Year:</span>
           <span class="meta-value">2023</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Role</span>
+          <span class="meta-label">Role:</span>
           <span class="meta-value">Content Developer / Project Lead</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Company</span>
+          <span class="meta-label">Company:</span>
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
@@ -364,15 +513,15 @@ footer {
 
       <div class="project-meta">
         <div class="meta-item">
-          <span class="meta-label">Year</span>
+          <span class="meta-label">Year:</span>
           <span class="meta-value">2020-2021</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Role</span>
+          <span class="meta-label">Role:</span>
           <span class="meta-value">Learning Designer / Product Lead</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Company</span>
+          <span class="meta-label">Company:</span>
           <span class="meta-value">NMIT (Te Pūkenga)</span>
         </div>
       </div>
@@ -418,15 +567,15 @@ footer {
 
       <div class="project-meta">
         <div class="meta-item">
-          <span class="meta-label">Year</span>
+          <span class="meta-label">Year:</span>
           <span class="meta-value">2020</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Role</span>
+          <span class="meta-label">Role:</span>
           <span class="meta-value">Learning Designer / Change Lead</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Company</span>
+          <span class="meta-label">Company:</span>
           <span class="meta-value">NMIT Nursing Department</span>
         </div>
       </div>
@@ -456,7 +605,7 @@ footer {
       </div>
     </div>
 
-    <!-- Unit Planning Project -->
+    <!-- K-12 Curriculum Project -->
     <div class="project-card">
       <div class="project-header">
         <div>
@@ -468,18 +617,17 @@ footer {
       <p class="project-description">
         Developed standardized educational content for K-12 grades aligned with global curriculum standards. Created 40 hours of learning materials per grade level with emphasis on Universal Design for Learning, gamification, and inquiry-based projects.
       </p>
-
       <div class="project-meta">
         <div class="meta-item">
-          <span class="meta-label">Year</span>
+          <span class="meta-label">Year:</span>
           <span class="meta-value">2022-2023</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Role</span>
+          <span class="meta-label">Role:</span>
           <span class="meta-value">Content Developer / Product Designer</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Company</span>
+          <span class="meta-label">Company:</span>
           <span class="meta-value">Code Avengers</span>
         </div>
       </div>
@@ -511,16 +659,134 @@ footer {
     </div>
   </div>
 
-  <section class="cta-section">
-    <h2>Let's Discuss Your Product Needs</h2>
-    <p>I'm passionate about building products that solve real problems through user research, data-driven decisions, and collaborative development.</p>
-    <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
-  </section>
+  <!-- TENZ Webinars - Replace K-12 card -->
+<div class="project-card">
+  <div class="project-header">
+    <div>
+      <h2 class="project-title">TENZ Webinars</h2>
+    </div>
+    <span class="project-type">Educational Webinars</span>
+  </div>
+  
+  <p class="project-description">
+    Co-presented TENZ webinars on Computational Thinking (Y1-8) and AI classroom integration. Shared practical strategies for Digital Technologies across learning areas with free teacher resources and Code Avengers platform trial.
+  </p>
 
-  <footer>
-    <p>&copy; 2025 Katie Prokop | Product Manager</p>
-    <p style="margin-top: 0.5rem;">Nelson, New Zealand 🇳🇿</p>
-  </footer>
+  <a href="https://youtu.be/BhB7HKmLK4c" target="_blank" class="video-link">
+    <i class="fab fa-youtube"></i>
+    Computational Thinking Webinar
+  </a>
+  <a href="https://youtu.be/fl1zxdzE8AQ" target="_blank" class="video-link">
+    <i class="fab fa-youtube"></i>
+    AI Integration Webinar
+  </a>
+
+  <div class="project-meta">
+    <div class="meta-item">
+      <span class="meta-label">Year:</span>
+      <span class="meta-value">2023</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Role:</span>
+      <span class="meta-value">Presenter / Learning Designer</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Client:</span>
+      <span class="meta-value">TENZ</span>
+    </div>
+  </div>
+
+  <div class="project-impact">
+    <h4>Impact & Results</h4>
+    <p>Equipped educators with practical DT integration strategies across curriculum areas. Provided free resources and platform trials to enhance classroom technology implementation.</p>
+  </div>
+
+  <div class="pm-highlight">
+    <h4>Product Management Skills Applied</h4>
+    <ul>
+      <li>Content strategy for teacher professional development</li>
+      <li>Curriculum alignment with NZ Digital Technologies</li>
+      <li>Practical resource development for classroom use</li>
+      <li>Platform demonstration and teacher onboarding</li>
+      <li>Audience engagement through interactive webinars</li>
+    </ul>
+  </div>
+
+  <div class="skills-tags">
+    <span class="skill-tag">Presentation</span>
+    <span class="skill-tag">Facilitation</span>
+    <span class="skill-tag">Learning Design</span>
+    <span class="skill-tag">Content Creation</span>
+    <span class="skill-tag">Resource Development</span>
+    <span class="skill-tag">Curriculum Integration</span>
+    </div>
+  </div>
+
+<!-- SINGLE Digital Assets Card - All 3 courses -->
+  <div class="project-card" style="margin-top: 3rem;">
+  <div class="project-header">
+    <div>
+      <h2 class="project-title">Interactive Hour of Code Courses</h2>
+    </div>
+    <span class="project-type">Digital Learning Assets</span>
+  </div>
+  
+  <p class="project-description">
+    Created three engaging Hour of Code courses: AI evolution (Silicon Synapses), blockchain/metaverse (New Kids on the Blockchain), and kindergarten computing/literacy (Keyboard Quest). Featured interactive widgets, storytelling, and inclusive design for global audiences.
+  </p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+    <a href="https://learn.codeavengers.com/impacts-of-computing/900" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+      <i class="fas fa-play-circle"></i> Silicon Synapses: AI Evolution
+    </a>
+    <a href="https://learn.codeavengers.com/impacts-of-computing/1000" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+      <i class="fas fa-play-circle"></i> New Kids on the Blockchain
+    </a>
+    <a href="https://learn.codeavengers.com/impacts-of-computing/800" target="_blank" class="try-button" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+      <i class="fas fa-play-circle"></i> Keyboard Quest
+    </a>
+  </div>
+
+  <div class="project-meta">
+    <div class="meta-item">
+      <span class="meta-label">Years:</span>
+      <span class="meta-value">2022-2023</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Client:</span>
+      <span class="meta-value">Code Avengers</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tools:</span>
+      <span class="meta-value">Adobe Suite, After Effects, CA Markup</span>
+    </div>
+  </div>
+
+  <div class="project-impact">
+    <h4>Impact & Results</h4>
+    <p>Delivered accessible, engaging computing education for global audiences from kindergarten to advanced learners. Showcased innovative pedagogy through interactive storytelling and multimedia.</p>
+  </div>
+
+  <div class="skills-tags">
+    <span class="skill-tag">Interactive Design</span>
+    <span class="skill-tag">Storytelling</span>
+    <span class="skill-tag">Early Childhood</span>
+    <span class="skill-tag">AI/Web3 Education</span>
+    <span class="skill-tag">Video Production</span>
+    <span class="skill-tag">Inclusive Learning</span>
+  </div>
+</div>
+
+<section class="cta-section">
+  <h2>Let's Discuss Your Product Needs</h2>
+  <p>I'm passionate about building products that solve real problems through user research, data-driven decisions, and collaborative development.</p>
+  <a href="mailto:prokopkatie@gmail.com" class="btn">Get in Touch</a>
+</section>
+
+<footer>
+  <p>&copy; 2025 Katie Prokop | Product Manager</p>
+  <p style="margin-top: 0.5rem;">Nelson, New Zealand 🇳🇿</p>
+</footer>
 </div>
 </body>
 </html>
