@@ -645,14 +645,20 @@ footer {
     </footer>
   </div>
 <script>
-let scrollTrigger = window.innerHeight / 2;  // HALFWAY DOWN PAGE
+let scrollTrigger = document.body.scrollHeight * 0.75;  // 75% DOWN ENTIRE PAGE
 
 window.addEventListener('scroll', () => {
   document.body.classList.toggle('has-scrolled', window.scrollY > scrollTrigger);
   
-  // Update trigger for resize
-  scrollTrigger = window.innerHeight / 2;
+  // Update trigger based on full page height
+  scrollTrigger = document.body.scrollHeight * 0.75;
+});
+
+window.addEventListener('resize', () => {
+  scrollTrigger = document.body.scrollHeight * 0.75;
 });
 </script>
+
+
 </body>
 </html>
